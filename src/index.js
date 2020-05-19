@@ -1,41 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   // your code here
-  let taskDescription= document.getElementById('new-task-description');
-  const submit= document.getElementsByTagName('input')[1];
-  let tasksList=document.getElementById('tasks');
-  const form= document.getElementById('create-task-form');
-  let tasks=[];
+let listUl = document.getElementById("tasks");
 
-  submit.addEventListener('click',function(event){
+  document.querySelector("#btn-submit").addEventListener("click", function(event) {
+         event.preventDefault();
+         let inputText = document.getElementById("new-task-description").value;
+         let li = document.createElement("li");
+         li.innerText = inputText;
+         listUl.appendChild(li);
+}, false);
 
-    event.preventDefault();
-    if(taskDescription&& taskDescription.value){
-    let task ={
-
-      title: taskDescription
-    }
-    tasks.push(task);
-
-    let listItem=document.createElement('li');
-    let delBtn=document.createElement('button');
-
-    listItem.innerText= task.title.value;
-    delBtn.innerText= " x";
-
-    listItem.appendChild(delBtn);
-    tasksList.appendChild(listItem);
-
-    delBtn.onclick= function(){
-    tasksList.removeChild(listItem);
-    };
-
-    form.reset();
-
-  }
-  else{
-
-    alert("please type your task before submitting");
-  }
-  })
 });
